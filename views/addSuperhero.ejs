@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Agregar Superhéroe</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #1a1a1a;
+        color: #f4f4f4;
+      }
+      h1,
+      label {
+        font-family: "Bangers", cursive;
+        color: #e50914;
+      }
+      input,
+      button {
+        font-family: "Roboto", sans-serif;        
+      }
+    </style>
+  </head>
+  <body class="p-6">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="text-4xl mb-6">Agregar Superhéroe</h1>
+
+      <% if (errors && errors.length) { %>
+      <div class="bg-red-800 text-white p-4 rounded mb-6 shadow-lg">
+        <ul class="list-disc pl-5">
+          <% errors.forEach(err => { %>
+          <li><%= err.msg %></li>
+          <% }) %>
+        </ul>
+      </div>
+      <% } %>
+
+      <form
+        action="/api/heroes/agregar"
+        method="POST"
+        class="bg-[#2a2a2a] p-6 rounded-lg shadow-xl space-y-4"
+      >
+        <input
+          type="text"
+          name="nombreSuperHeroe"
+          placeholder="Nombre del superhéroe"
+          required
+          pattern=".{3,60}"
+          value="<%= old?.nombreSuperHeroe %>"
+          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
+        />
+
+        <input
+          type="text"
+          name="nombreReal"
+          placeholder="Nombre real"
+          required
+          pattern=".{3,60}"
+          value="<%= old?.nombreReal %>"
+          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
+        />
+
+        <input
+          type="number"
+          name="edad"
+          placeholder="Edad"
+          required
+          min="0"
+          value="<%= old?.edad %>"
+          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
+        />
+
+        <input
+          type="text"
+          name="planetaOrigen"
+          placeholder="Planeta de origen"
+          value="<%= old?.planetaOrigen %>"
+          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
+        />
+
+        <input
+          type="text"
+          name="debilidad"
+          placeholder="Debilidad"
+          value="<%= old?.debilidad %>"
+          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
+        />
+
+        <input
+          type="text"
+          name="poderes"
+          placeholder="Poderes (separados por coma)"
+          required
+          value="<%= old?.poderes %>"
+          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
+        />
+
+        <input
+          type="text"
+          name="aliados"
+          placeholder="Aliados (separados por coma)"
+          value="<%= old?.aliados %>"
+          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
+        />
+
+        <input
+          type="text"
+          name="enemigos"
+          placeholder="Enemigos (separados por coma)"
+          value="<%= old?.enemigos %>"
+          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
+        />
+
+        <input
+          type="text"
+          name="creador"
+          placeholder="Creador"
+          value="<%= old?.creador %>"
+          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
+        />
+
+        <button
+          type="submit"
+          class="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded shadow"
+        >
+          Agregar
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

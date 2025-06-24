@@ -1,0 +1,14 @@
+{
+  "watch": [
+    "server.mjs",
+    "routes",
+    "controllers",
+    "services",
+    "repository",
+    "models",
+    "middlewares",
+    "views"
+  ],
+  "ext": "mjs,js,json,ejs",
+  "exec": "node server.mjs"
+}

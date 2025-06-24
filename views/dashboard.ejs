@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard de Superhéroes</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #1a1a1a;
+        color: #f4f4f4;
+        font-family: "Roboto", sans-serif;
+      }
+      h1 {
+        font-family: "Bangers", cursive;
+        color: #e50914;
+      }
+      .card {
+        background-color: #2a2a2a;
+        border: 1px solid #444;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 400px;
+      }
+      .btn-editar {
+        background-color: #e50914;
+      }
+      .btn-eliminar {
+        background-color: #444;
+      }
+      .btn-editar:hover {
+        background-color: #ff1e2d;
+      }
+      .btn-eliminar:hover {
+        background-color: #666;
+      }
+    </style>
+  </head>
+  <body class="p-6">
+    <h1 class="text-5xl mb-8 text-center">Superhéroes Registrados</h1>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% superheroes.forEach(superheroe => { %>
+      <div class="card rounded p-5 shadow-xl flex flex-col justify-between">
+        <div>
+          <h2 class="text-2xl font-bold mb-2 text-yellow-300">
+            <%= superheroe.nombreSuperHeroe %>
+          </h2>
+          <p><strong>Real:</strong> <%= superheroe.nombreReal %></p>
+          <p><strong>Edad:</strong> <%= superheroe.edad %></p>
+          <p><strong>Planeta:</strong> <%= superheroe.planetaOrigen %></p>
+          <p><strong>Debilidad:</strong> <%= superheroe.debilidad %></p>
+          <p>
+            <strong>Habilidad Especial:</strong> <%= superheroe.habilidadEspecial || 'N/A' %>
+          </p>
+          <p><strong>Poderes:</strong> <%= superheroe.poderes.join(", ") %></p>
+          <p><strong>Aliados:</strong> <%= superheroe.aliados.join(", ") %></p>
+          <p><strong>Enemigos:</strong> <%= superheroe.enemigos.join(", ") %></p>
+          <p><strong>Creador:</strong> <%= superheroe.creador %></p>
+        </div>
+
+        <div class="mt-4 flex space-x-4">
+          <a
+            href="/api/heroes/<%= superheroe._id %>/editar"
+            class="btn-editar text-white px-4 py-2 rounded hover:scale-105 transition-all"
+            >Editar</a
+          >
+          <form
+            action="/api/heroes/<%= superheroe._id %>"
+            method="POST"
+            onsubmit="return confirm('¿Estás seguro de que quieres eliminar a <%= superheroe.nombreSuperHeroe %>?');"
+          >
+            <input type="hidden" name="_method" value="DELETE" />
+            <button
+              type="submit"
+              class="btn-eliminar text-white px-4 py-2 rounded hover:scale-105 transition-all"
+            >
+              Eliminar
+            </button>
+          </form>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </body>
+</html>
