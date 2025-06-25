@@ -21,7 +21,7 @@
       }
       input,
       button {
-        font-family: "Roboto", sans-serif;        
+        font-family: "Roboto", sans-serif;
       }
     </style>
   </head>
@@ -29,107 +29,221 @@
     <div class="max-w-2xl mx-auto">
       <h1 class="text-4xl mb-6">Agregar Superhéroe</h1>
 
-      <% if (errors && errors.length) { %>
-      <div class="bg-red-800 text-white p-4 rounded mb-6 shadow-lg">
-        <ul class="list-disc pl-5">
-          <% errors.forEach(err => { %>
-          <li><%= err.msg %></li>
-          <% }) %>
-        </ul>
-      </div>
-      <% } %>
-
       <form
         action="/api/heroes/agregar"
         method="POST"
-        class="bg-[#2a2a2a] p-6 rounded-lg shadow-xl space-y-4"
+        autocomplete="off"
+        class="bg-[#2a2a2a] p-8 rounded-lg shadow-2xl space-y-8"
       >
-        <input
-          type="text"
-          name="nombreSuperHeroe"
-          placeholder="Nombre del superhéroe"
-          required
-          pattern=".{3,60}"
-          value="<%= old?.nombreSuperHeroe %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="nombreSuperHeroe"
+            placeholder="Nombre del superhéroe"
+            required
+            pattern=".{3,60}"
+            value="<%= old?.nombreSuperHeroe %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out placeholder-black/90"
+          />
+          <p
+            id="nombreSuperHeroe-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="nombreReal"
-          placeholder="Nombre real"
-          required
-          pattern=".{3,60}"
-          value="<%= old?.nombreReal %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="nombreReal"
+            placeholder="Nombre real"
+            required
+            pattern=".{3,60}"
+            value="<%= old?.nombreReal %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out placeholder-black/90"
+          />
+          <p
+            id="nombreReal-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="number"
-          name="edad"
-          placeholder="Edad"
-          required
-          min="0"
-          value="<%= old?.edad %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="number"
+            name="edad"
+            placeholder="Edad"
+            required
+            min="0"
+            value="<%= old?.edad %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out placeholder-black/90"
+          />
+          <p
+            id="edad-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="planetaOrigen"
-          placeholder="Planeta de origen"
-          value="<%= old?.planetaOrigen %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="planetaOrigen"
+            placeholder="Planeta de origen"
+            required
+            value="<%= old?.planetaOrigen %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out placeholder-black/90"
+          />
+          <p
+            id="planetaOrigen-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="debilidad"
-          placeholder="Debilidad"
-          value="<%= old?.debilidad %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="debilidad"
+            placeholder="Debilidad"
+            required
+            value="<%= old?.debilidad %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out placeholder-black/90"
+          />
+          <p
+            id="debilidad-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="poderes"
-          placeholder="Poderes (separados por coma)"
-          required
-          value="<%= old?.poderes %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="habilidadEspecial"
+            placeholder="Habilidad Especial"
+            value="<%= old?.habilidadEspecial %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out placeholder-black/90"
+          />
+          <p
+            id="habilidadEspecial-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="aliados"
-          placeholder="Aliados (separados por coma)"
-          value="<%= old?.aliados %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="poderes"
+            placeholder="Poderes (separados por coma)"
+            required
+            value="<%= old?.poderes %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out placeholder-black/90"
+          />
+          <p
+            id="poderes-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="enemigos"
-          placeholder="Enemigos (separados por coma)"
-          value="<%= old?.enemigos %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="aliados"
+            placeholder="Aliados (separados por coma)"
+            required
+            value="<%= old?.aliados %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out placeholder-black/90"
+          />
+          <p
+            id="aliados-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="creador"
-          placeholder="Creador"
-          value="<%= old?.creador %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
-
-        <button
-          type="submit"
-          class="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded shadow"
-        >
-          Agregar
-        </button>
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="enemigos"
+            placeholder="Enemigos (separados por coma)"
+            required
+            value="<%= old?.enemigos %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out placeholder-black/90"
+          />
+          <p
+            id="enemigos-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="creador"
+            placeholder="Creador"
+            required
+            value="<%= old?.creador %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out placeholder-black/90"
+          />
+          <p
+            id="creador-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
+        <div class="flex justify-center">
+          <button
+            type="submit"
+            class="bg-yellow-500 hover:bg-yellow-400 text-black tracking-wide px-10 py-3 rounded shadow"
+          >
+            Agregar
+          </button>
+        </div>
       </form>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const inputs = document.querySelectorAll(
+          "form input[required], form input[pattern]"
+        );
+
+        inputs.forEach((input) => {
+          const container = document.createElement("div");
+          container.className = "relative space-y-1";
+          input.parentNode.insertBefore(container, input);
+          container.appendChild(input);
+
+          const errorMessage = document.createElement("p");
+          errorMessage.id = `${input.name}-error`;
+          errorMessage.className = `
+        absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a]
+        opacity-0 transition-opacity duration-300 ease-in-out
+      `;
+          errorMessage.style.pointerEvents = "none";
+          container.appendChild(errorMessage);
+
+          input.addEventListener("input", () =>
+            validateInput(input, errorMessage)
+          );
+          input.addEventListener("blur", () =>
+            validateInput(input, errorMessage)
+          );
+        });
+
+        function validateInput(input, errorDiv) {
+          if (!input.validity.valid) {
+            if (input.validity.valueMissing) {
+              errorDiv.textContent = "Este campo es obligatorio.";
+            } else if (input.validity.patternMismatch) {
+              errorDiv.textContent = "Debe tener entre 3 y 60 caracteres.";
+            } else if (input.validity.rangeUnderflow) {
+              errorDiv.textContent = "La edad no puede ser negativa.";
+            } else {
+              errorDiv.textContent = "Campo inválido.";
+            }
+            errorDiv.classList.remove("opacity-0");
+            errorDiv.classList.add("opacity-100");
+          } else {
+            errorDiv.classList.remove("opacity-100");
+            errorDiv.classList.add("opacity-0");
+          }
+        }
+      });
+    </script>
   </body>
 </html>

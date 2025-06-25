@@ -29,98 +29,208 @@
     <div class="max-w-2xl mx-auto">
       <h1 class="text-4xl mb-6">Editar Superhéroe</h1>
 
-      <% if (errors && errors.length) { %>
-      <div class="bg-red-800 text-white p-4 rounded mb-6 shadow-lg">
-        <ul class="list-disc pl-5">
-          <% errors.forEach(err => { %>
-          <li><%= err.msg %></li>
-          <% }) %>
-        </ul>
-      </div>
-      <% } %>
-
       <form
+        autocomplete="off"
         action="/api/heroes/<%= superhero._id %>/editar"
         method="POST"
-        method="POST"
-        class="bg-[#2a2a2a] p-6 rounded-lg shadow-xl space-y-4"
+        class="bg-[#2a2a2a] p-8 rounded-lg shadow-xl space-y-8"
       >
         <input type="hidden" name="_method" value="PUT" />
-        <input
-          type="text"
-          name="nombreSuperHeroe"
-          required
-          pattern=".{3,60}"
-          value="<%= old?.nombreSuperHeroe ?? superhero.nombreSuperHeroe %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
 
-        <input
-          type="text"
-          name="nombreReal"
-          required
-          pattern=".{3,60}"
-          value="<%= old?.nombreReal ?? superhero.nombreReal %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="nombreSuperHeroe"
+            required
+            pattern=".{3,60}"
+            value="<%= old?.nombreSuperHeroe ?? superhero.nombreSuperHeroe %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
+          />
+          <p
+            id="nombreSuperHeroe-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="number"
-          name="edad"
-          min="0"
-          value="<%= old?.edad ?? superhero.edad %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="nombreReal"
+            required
+            pattern=".{3,60}"
+            value="<%= old?.nombreReal ?? superhero.nombreReal %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
+          />
+          <p
+            id="nombreReal-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="planetaOrigen"
-          value="<%= old?.planetaOrigen ?? superhero.planetaOrigen %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="number"
+            name="edad"
+            min="0"
+            value="<%= old?.edad ?? superhero.edad %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
+          />
+          <p
+            id="edad-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="debilidad"
-          value="<%= old?.debilidad ?? superhero.debilidad %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="planetaOrigen"
+            value="<%= old?.planetaOrigen ?? superhero.planetaOrigen %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
+          />
+          <p
+            id="planetaOrigen-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="poderes"
-          value="<%= old?.poderes ?? superhero.poderes.join(', ') %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="debilidad"
+            value="<%= old?.debilidad ?? superhero.debilidad %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
+          />
+          <p
+            id="debilidad-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="aliados"
-          value="<%= old?.aliados ?? superhero.aliados.join(', ') %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="habilidadEspecial"
+            value="<%= old?.habilidadEspecial ?? superhero.habilidadEspecial %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
+          />
+          <p
+            id="habilidadEspecial-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="enemigos"
-          value="<%= old?.enemigos ?? superhero.enemigos.join(', ') %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="poderes"
+            value="<%= old?.poderes ?? superhero.poderes.join(', ') %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
+          />
+          <p
+            id="poderes-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <input
-          type="text"
-          name="creador"
-          value="<%= old?.creador ?? superhero.creador %>"
-          class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black"
-        />
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="aliados"
+            value="<%= old?.aliados ?? superhero.aliados.join(', ') %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
+          />
+          <p
+            id="aliados-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
 
-        <button
-          type="submit"
-          class="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded shadow"
-        >
-          Guardar Cambios
-        </button>
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="enemigos"
+            value="<%= old?.enemigos ?? superhero.enemigos.join(', ') %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
+          />
+          <p
+            id="enemigos-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
+
+        <div class="relative space-y-1">
+          <input
+            type="text"
+            name="creador"
+            value="<%= old?.creador ?? superhero.creador %>"
+            class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
+          />
+          <p
+            id="creador-error"
+            class="absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a] opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none"
+          ></p>
+        </div>
+
+        <div class="flex justify-center">
+          <button
+            type="submit"
+            class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-4 rounded shadow transition duration-200"
+          >
+            Guardar Cambios
+          </button>
+        </div>
       </form>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const inputs = document.querySelectorAll(
+          "form input[required], form input[pattern]"
+        );
+
+        inputs.forEach((input) => {
+          const container = document.createElement("div");
+          container.className = "relative space-y-1";
+          input.parentNode.insertBefore(container, input);
+          container.appendChild(input);
+
+          const errorMessage = document.createElement("p");
+          errorMessage.id = `${input.name}-error`;
+          errorMessage.className = `
+        absolute top-full left-0 mt-1 text-sm text-red-400 bg-[#1a1a1a]
+        opacity-0 transition-opacity duration-300 ease-in-out
+      `;
+          errorMessage.style.pointerEvents = "none";
+          container.appendChild(errorMessage);
+
+          input.addEventListener("input", () =>
+            validateInput(input, errorMessage)
+          );
+          input.addEventListener("blur", () =>
+            validateInput(input, errorMessage)
+          );
+        });
+
+        function validateInput(input, errorDiv) {
+          if (!input.validity.valid) {
+            if (input.validity.valueMissing) {
+              errorDiv.textContent = "Este campo es obligatorio.";
+            } else if (input.validity.patternMismatch) {
+              errorDiv.textContent = "Debe tener entre 3 y 60 caracteres.";
+            } else if (input.validity.rangeUnderflow) {
+              errorDiv.textContent = "La edad no puede ser negativa.";
+            } else {
+              errorDiv.textContent = "Campo inválido.";
+            }
+            errorDiv.classList.remove("opacity-0");
+            errorDiv.classList.add("opacity-100");
+          } else {
+            errorDiv.classList.remove("opacity-100");
+            errorDiv.classList.add("opacity-0");
+          }
+        }
+      });
+    </script>
   </body>
 </html>

@@ -45,7 +45,13 @@ export const crearSuperheroeController = async (req, res) => {
   };
 
   try {
-    const data = { ...req.body, poderes: req.body.poderes };
+    const data = {
+      ...req.body,
+      poderes: req.body.poderes,
+      aliados: req.body.aliados,
+      enemigos: req.body.enemigos,
+      habilidadEspecial: req.body.habilidadEspecial,
+    };
     const nuevo = await crearSuperheroe(data);
 
     res.redirect("/api/heroes");
@@ -83,6 +89,7 @@ export const actualizarSuperheroeController = async (req, res) => {
     edad: req.body.edad,
     planetaOrigen: req.body.planetaOrigen,
     debilidad: req.body.debilidad,
+    habilidadEspecial: req.body.habilidadEspecial,
     poderes: Array.isArray(req.body.poderes)
       ? req.body.poderes.join(", ")
       : req.body.poderes,
@@ -101,6 +108,7 @@ export const actualizarSuperheroeController = async (req, res) => {
       poderes: req.body.poderes,
       aliados: req.body.aliados,
       enemigos: req.body.enemigos,
+      habilidadEspecial: req.body.habilidadEspecial,
     };
     const update = await actualizarSuperheroe(superheroeId, data);
 

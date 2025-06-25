@@ -1,4 +1,3 @@
-// superheroeValidation.mjs
 import { body, validationResult } from "express-validator";
 
 export const registerSuperheroeValidation = () => [
@@ -22,10 +21,13 @@ export const registerSuperheroeValidation = () => [
     .isInt({ min: 0 })
     .withMessage("La edad debe ser un número entero ≥ 0"),
 
+  body("habilidadEspecial")
+    .isLength({ min: 3, max: 60 })
+    .withMessage("Habilidad especial: entre 3 y 60 caracteres"),
+
   body("poderes")
     .notEmpty()
     .withMessage("Debe ingresar al menos un poder")
-    // Primero, sanitizamos: convertimos la cadena a un array si es una cadena.
     .customSanitizer((value) => {
       if (typeof value === "string") {
         return value
@@ -33,13 +35,11 @@ export const registerSuperheroeValidation = () => [
           .map((s) => s.trim())
           .filter((s) => s.length > 0);
       }
-      // Si ya es un array (o cualquier otro tipo), lo devolvemos tal cual.
       return value;
     })
-    // Luego, validamos el resultado (que ahora debería ser un array)
+
     .custom((value) => {
       if (!Array.isArray(value)) {
-        // Esto ahora debería ser falso si se sanitizó correctamente
         throw new Error("Poderes debe ser un array válido");
       }
       if (value.length === 0) {

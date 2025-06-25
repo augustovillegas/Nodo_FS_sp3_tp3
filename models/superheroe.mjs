@@ -21,8 +21,24 @@ const superheroSchema = new mongoose.Schema(
       required: [true, "La edad es obligatoria"],
       min: [0, "La edad no puede ser negativa"],
     },
-    planetaOrigen: { type: String, default: "Desconocido" },
-    debilidad: { type: String, default: "Sin registro" },
+    planetaOrigen: {
+      type: String,
+      default: "N/A",
+      minlength: [3, "Debe tener al menos 3 caracteres"],
+      maxlength: [60, "No puede superar 60 caracteres"],
+    },
+    debilidad: {
+      type: String,
+      default: "N/A",
+      minlength: [3, "Debe tener al menos 3 caracteres"],
+      maxlength: [60, "No puede superar 60 caracteres"],
+    },
+    habilidadEspecial: {
+      type: String,
+      default: "N/A",
+      minlength: [3, "Debe tener al menos 3 caracteres"],
+      maxlength: [60, "No puede superar 60 caracteres"],
+    },
     poderes: {
       type: [String],
       required: [true, "Los poderes son obligatorios"],
