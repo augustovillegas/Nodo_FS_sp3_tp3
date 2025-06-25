@@ -35,6 +35,11 @@
         autocomplete="off"
         class="bg-[#2a2a2a] p-8 rounded-lg shadow-2xl space-y-8"
       >
+        <div
+          id="input-tooltip"
+          class="absolute bg-[#e50914] text-white px-3 py-1 text-sm font-semibold rounded shadow-lg opacity-0 transition-all duration-300 pointer-events-none"
+          style="top: 0; left: 0"
+        ></div>
         <div class="relative space-y-1">
           <input
             type="text"
@@ -243,6 +248,37 @@
             errorDiv.classList.add("opacity-0");
           }
         }
+      });
+    </script>
+
+    <div
+      id="field-info"
+      class="fixed top-6 right-6 bg-[#e50914] text-white px-4 py-2 rounded shadow-lg text-sm font-semibold transition-opacity duration-300 opacity-0 pointer-events-none z-50"
+    ></div>
+    <!-- Modal informativo para input activo -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const inputs = document.querySelectorAll("form input");
+        const tooltip = document.getElementById("input-tooltip");
+
+        inputs.forEach((input) => {
+          input.addEventListener("focus", () => {
+            const rect = input.getBoundingClientRect();
+            const labelText = input.getAttribute("placeholder") || input.name;
+
+            tooltip.textContent = `${labelText}`;
+            tooltip.style.top = `${window.scrollY + rect.top + 8}px`;
+            tooltip.style.left = `${rect.left - tooltip.offsetWidth - 20}px`;
+
+            tooltip.classList.remove("opacity-0");
+            tooltip.classList.add("opacity-100");
+          });
+
+          input.addEventListener("blur", () => {
+            tooltip.classList.remove("opacity-100");
+            tooltip.classList.add("opacity-0");
+          });
+        });
       });
     </script>
   </body>
