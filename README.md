@@ -16,8 +16,6 @@ Una API RESTful en **Node.js**, **Express** y **MongoDB**, con motor de vistas *
 ## ✨ Características
 
 - CRUD completo de superhéroes
-- Filtrado por atributo (`/heroes/:atributo/:valor`)
-- Listado de mayores de 30 años (`/heroes/mayores-30`)
 - Interfaces EJS para:
   - Dashboard (`/heroes`)
   - Formulario Agregar (`/heroes/agregar`)
