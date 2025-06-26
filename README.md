@@ -6,37 +6,43 @@ Una API RESTful en **Node.js**, **Express** y **MongoDB**, con motor de vistas *
 
 ## 📋 Contenido
 
-1. [Características](#-características)  
-2. [Tecnologías](#-tecnologías)  
-3. [Instalación](#️-instalación)  
-4. [Estructura del proyecto](#-estructura-del-proyecto)  
+1. [Características](#-características)
+2. [Tecnologías](#-tecnologías)
+3. [Instalación](#️-instalación)
+4. [Estructura del proyecto](#-estructura-del-proyecto)
 
 ---
 
 ## ✨ Características
 
-- CRUD completo de superhéroes  
-- Filtrado por atributo (`/heroes/:atributo/:valor`)  
-- Listado de mayores de 30 años (`/heroes/mayores-30`)  
+- CRUD completo de superhéroes
+- Filtrado por atributo (`/heroes/:atributo/:valor`)
+- Listado de mayores de 30 años (`/heroes/mayores-30`)
 - Interfaces EJS para:
-  - Dashboard (`/heroes`)  
-  - Formulario Agregar (`/heroes/agregar`)  
-  - Formulario Editar (`/heroes/:id/editar`)  
-- Validaciones backend con **express-validator**  
-- Validación cliente al vuelo (tooltips y errores dinámicos)  
-- Confirmación modal al eliminar  
+  - Dashboard (`/heroes`)
+  - Formulario Agregar (`/heroes/agregar`)
+  - Formulario Editar (`/heroes/:id/editar`)
+- Validaciones backend con **express-validator**
+- Validación cliente al vuelo (tooltips y errores dinámicos)
+- Confirmación modal al eliminar
 
 ---
 
 ## 🛠 Tecnologías
 
-- **Node.js** 18+  
-- **Express** 5.x  
-- **Mongoose** 8.x  
-- **EJS** + **Tailwind CSS**  
-- **express-validator**  
-- **method-override**  
+- **Node.js** 18+
+- **Express** 5.x
+- **Mongoose** 8.x
+- **EJS** + **Tailwind CSS**
+- **express-validator**
+- **method-override**
 - **nodemon** (desarrollo)
+
+---
+
+## ⚙️ Instalación
+
+- npm install
 
 ---
 
@@ -66,3 +72,4 @@ Una API RESTful en **Node.js**, **Express** y **MongoDB**, con motor de vistas *
 │       └── nav.ejs
 ├── server.mjs               # Configura Express, EJS, middlewares
 └── package.json
+
