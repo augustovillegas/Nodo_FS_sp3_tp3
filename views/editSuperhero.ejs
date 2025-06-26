@@ -91,6 +91,7 @@
           <input
             type="text"
             name="planetaOrigen"
+            pattern=".{3,60}"
             value="<%= old?.planetaOrigen ?? superhero.planetaOrigen %>"
             class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
           />
@@ -104,6 +105,7 @@
           <input
             type="text"
             name="debilidad"
+            pattern=".{3,60}"
             value="<%= old?.debilidad ?? superhero.debilidad %>"
             class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
           />
@@ -117,6 +119,7 @@
           <input
             type="text"
             name="habilidadEspecial"
+            pattern=".{3,60}"
             value="<%= old?.habilidadEspecial ?? superhero.habilidadEspecial %>"
             class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
           />
@@ -130,6 +133,7 @@
           <input
             type="text"
             name="poderes"
+            pattern=".{3,60}"
             value="<%= old?.poderes ?? superhero.poderes.join(', ') %>"
             class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
           />
@@ -143,6 +147,7 @@
           <input
             type="text"
             name="aliados"
+            pattern=".{3,60}"
             value="<%= old?.aliados ?? superhero.aliados.join(', ') %>"
             class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
           />
@@ -156,6 +161,7 @@
           <input
             type="text"
             name="enemigos"
+            pattern=".{3,60}"
             value="<%= old?.enemigos ?? superhero.enemigos.join(', ') %>"
             class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
           />
@@ -169,6 +175,7 @@
           <input
             type="text"
             name="creador"
+            pattern=".{3,60}"
             value="<%= old?.creador ?? superhero.creador %>"
             class="w-full p-2 rounded border border-black bg-[#666] hover:bg-[#e50914] text-black transition duration-300 ease-in-out"
           />
