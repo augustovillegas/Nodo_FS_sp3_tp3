@@ -29,6 +29,42 @@
     <div class="max-w-2xl mx-auto">
       <h1 class="text-4xl mb-6">Editar Superhéroe</h1>
 
+      <!-- 🚨 MODAL DE ERRORES DEL SERVIDOR -->
+      <% if (errors && errors.length) { %>
+      <div
+        id="server-error-modal"
+        class="fixed inset-0 flex items-center justify-center z-50"
+      >
+        <div
+          class="absolute inset-0 bg-black bg-opacity-70 backdrop-blur-sm"
+        ></div>
+        <div
+          class="relative bg-[#2a2a2a] border border-red-500 text-white p-6 rounded-lg shadow-xl max-w-lg w-full z-10"
+        >
+          <h2 class="text-xl font-bold mb-4 text-red-400">
+            Se detectaron errores en el formulario:
+          </h2>
+          <ul class="space-y-2 text-sm">
+            <% errors.forEach(err => { %>
+            <li class="flex items-start gap-2">
+              <span class="text-red-300 font-semibold">• <%= err.path %>:</span>
+              <span class="text-red-100"><%= err.msg %></span>
+            </li>
+            <% }) %>
+          </ul>
+          <div class="mt-6 text-right">
+            <button
+              onclick="document.getElementById('server-error-modal').classList.add('hidden')"
+              class="bg-red-600 hover:bg-red-500 px-4 py-2 rounded text-white shadow"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <!-- 🔚 FIN DEL MODAL -->
+
       <form
         autocomplete="off"
         action="/api/heroes/<%= superhero._id %>/editar"

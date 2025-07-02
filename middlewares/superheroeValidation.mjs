@@ -115,7 +115,10 @@ export const registerSuperheroeValidation = () => [
 ];
 
 export const runValidation = (req, res, next) => {
+  console.log("📥 Body recibido:", req.body);
+
   const errors = validationResult(req);
+  console.log("📛 Errores de validación:", errors.array());
 
   if (!errors.isEmpty()) {
     const isEditing = req.originalUrl.includes("/editar");
@@ -135,5 +138,6 @@ export const runValidation = (req, res, next) => {
       });
   }
 
+  console.log("✅ Validación OK, pasa al siguiente middleware");
   next();
 };

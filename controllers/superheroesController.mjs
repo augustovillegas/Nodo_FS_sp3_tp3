@@ -9,10 +9,13 @@ import {
 import { renderizarSuperheroe } from "../views/responseView.mjs";
 
 export const obtenerTodosLosSuperheroesController = async (req, res) => {
+  console.log("GET /api/heroes - Obtener todos los superhéroes");
   try {
     const superheroes = await obtenerTodosLosSuperheroes();
+    console.log("Superhéroes obtenidos:", superheroes.length);
     res.render("dashboard", { superheroes });
   } catch (error) {
+    console.error("Error al obtener superhéroes:", error);
     res.status(500).send({
       mensaje: "Error al obtener los superhéroes",
       error: error.message,
@@ -21,6 +24,7 @@ export const obtenerTodosLosSuperheroesController = async (req, res) => {
 };
 
 export const formularioAgregarSuperheroeController = (req, res) => {
+  console.log("GET /api/heroes/agregar - Renderizar formulario de agregar");
   res.render("addSuperhero", { errors: [], old: {} });
 };
 
@@ -44,6 +48,8 @@ export const crearSuperheroeController = async (req, res) => {
     creador: req.body.creador,
   };
 
+  console.log("POST /api/heroes/agregar - Datos recibidos:", old);
+
   try {
     const data = {
       ...req.body,
@@ -54,8 +60,10 @@ export const crearSuperheroeController = async (req, res) => {
     };
     const nuevo = await crearSuperheroe(data);
 
+    console.log("Superhéroe creado correctamente:", nuevo);
     res.redirect("/api/heroes");
   } catch (error) {
+    console.error("Error al crear superhéroe:", error);
     res.status(500).render("addSuperhero", {
       errors: [{ msg: error.message }],
       old,
@@ -64,10 +72,11 @@ export const crearSuperheroeController = async (req, res) => {
 };
 
 export const formularioEditarSuperheroeController = async (req, res) => {
-  const { id } = req.params;
+  console.log(`GET /api/heroes/${req.params.id}/editar - Editar superhéroe`);
   try {
-    const superhero = await obtenerSuperheroePorId(id);
+    const superhero = await obtenerSuperheroePorId(req.params.id);
     if (!superhero) {
+      console.warn("Superhéroe no encontrado");
       return res.status(404).send("Superhéroe no encontrado");
     }
     res.render("editSuperhero", {
@@ -76,12 +85,16 @@ export const formularioEditarSuperheroeController = async (req, res) => {
       superhero,
     });
   } catch (error) {
+    console.error("Error al buscar superhéroe:", error);
     res.status(500).send(error.message);
   }
 };
 
 export const actualizarSuperheroeController = async (req, res) => {
   const superheroeId = req.params.id;
+
+  console.log(`PUT /api/heroes/${superheroeId}/editar - Datos recibidos`, req.body);
+
   const old = {
     _id: superheroeId,
     nombreSuperHeroe: req.body.nombreSuperHeroe,
@@ -113,12 +126,14 @@ export const actualizarSuperheroeController = async (req, res) => {
     const update = await actualizarSuperheroe(superheroeId, data);
 
     if (!update) {
+      console.warn("Superhéroe no encontrado para actualizar.");
       return res.status(404).render("editSuperhero", {
         errors: [{ msg: "Superhéroe no encontrado para actualizar." }],
         old,
       });
     }
 
+    console.log("Superhéroe actualizado:", update);
     res.redirect("/api/heroes");
   } catch (error) {
     console.error("Error al actualizar superhéroe:", error);
@@ -134,18 +149,22 @@ export const actualizarSuperheroeController = async (req, res) => {
 };
 
 export const eliminarSuperheroeController = async (req, res) => {
+  console.log(`DELETE /api/heroes/${req.params.id} - Eliminar superhéroe`);
   try {
     const eliminado = await eliminarSuperheroe(req.params.id);
 
     if (!eliminado) {
+      console.warn("Superhéroe no encontrado para eliminar");
       return res.status(404).render("dashboard", {
         superheroes: await obtenerTodosLosSuperheroes(),
         mensaje: "Superhéroe no encontrado",
       });
     }
 
+    console.log("Superhéroe eliminado correctamente:", eliminado);
     res.redirect("/api/heroes");
   } catch (error) {
+    console.error("Error al eliminar superhéroe:", error);
     res.status(500).render("dashboard", {
       superheroes: await obtenerTodosLosSuperheroes(),
       mensaje: "Error al eliminar superhéroe: " + error.message,
@@ -154,22 +173,31 @@ export const eliminarSuperheroeController = async (req, res) => {
 };
 
 export const eliminarSuperheroePorNombreController = async (req, res) => {
+  console.log(`DELETE /api/heroes/nombre/${req.params.nombre}`);
   try {
     const eliminado = await eliminarSuperheroePorNombre(req.params.nombre);
     if (!eliminado) {
-      return res
-        .status(404)
-        .json({ mensaje: "Superhéroe no encontrado por nombre" });
+      console.warn("Superhéroe no encontrado por nombre");
+      return res.status(404).json({ mensaje: "Superhéroe no encontrado por nombre" });
     }
     const formateado = renderizarSuperheroe(eliminado);
+    console.log("Superhéroe eliminado por nombre:", formateado);
     res.status(200).json({
       mensaje: "Superhéroe eliminado por nombre con éxito.",
       formateado,
     });
   } catch (error) {
+    console.error("Error al eliminar por nombre:", error);
     res.status(500).json({
       mensaje: "Error al eliminar por nombre",
       error: error.message,
     });
   }
 };
+
+
+
+
+
+
+
