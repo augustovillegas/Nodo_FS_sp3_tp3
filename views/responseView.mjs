@@ -1,18 +1,20 @@
-export const renderizarSuperheroe = (superheroe) => {
+export function renderizarSuperheroe(superheroe) {
   return {
-    Nombre: superheroe.nombreSuperHeroe,
-    "Nombre Real": superheroe.nombreReal,
-    Edad: superheroe.edad,
-    "Planeta de Origen": superheroe.planetaOrigen,
-    Debilidad: superheroe.debilidad,
-    Poderes: superheroe.poderes,
-    Aliados: superheroe.aliados,
-    Enemigos: superheroe.enemigos,
-    Creador: superheroe.creador,
-    Fecha: superheroe.createdAt
+    id: superheroe._id,
+    nombreSuperHeroe: superheroe.nombreSuperHeroe,
+    nombreReal: superheroe.nombreReal,
+    edad: superheroe.edad,
+    planetaOrigen: superheroe.planetaOrigen,
+    debilidad: superheroe.debilidad,
+    habilidadEspecial: superheroe.habilidadEspecial,
+    poderes: superheroe.poderes,
+    aliados: superheroe.aliados,
+    enemigos: superheroe.enemigos,
+    creador: superheroe.creador,
+    createdAt: superheroe.createdAt
   };
-};
+}
 
-export const renderizarListaSuperheroes = (superheroes) => {
-  return superheroes.map((superheroe) => renderizarSuperheroe(superheroe));
-};
+export function renderizarListaSuperheroes(lista) {
+  return lista.map(renderizarSuperheroe);
+}
