@@ -4,12 +4,13 @@
   "description": "Sprint 3 - Trabajo practico 3",
   "main": "server.mjs",
   "type": "module",
-  "scripts": {    
+  "scripts": {
     "start": "node server.mjs"
   },
   "author": "Augusto Villegas",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^17.2.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",

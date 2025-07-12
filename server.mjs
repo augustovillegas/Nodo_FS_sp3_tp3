@@ -1,7 +1,10 @@
 import express from "express";
+import dotenv from "dotenv";
 import methodOverride from "method-override";
 import superHeroRoutes from "./routes/superHeroRoutes.mjs";
 import { conectarDB } from "./config/dbConfig.mjs";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3008;
